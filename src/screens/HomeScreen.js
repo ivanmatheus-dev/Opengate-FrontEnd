@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Alert, Platform, PermissionsAndroid, TouchableOpacity, Animated } from 'react-native';
-import { BleManager } from 'react-native-ble-plx';
+import manager from '../services/BleService';
 import CurvedBackground from '../components/CurvedBackground';
 import { colors } from '../theme/colors';
 import Icon from 'react-native-vector-icons/Feather';
@@ -10,8 +10,6 @@ import { Buffer } from 'buffer';
 const SERVICE_UUID = '00000000-0000-0000-0000-000000000000'; // TODO: Replace with ESP32 Service UUID
 const CHARACTERISTIC_UUID = '00000000-0000-0000-0000-000000000000'; // TODO: Replace with ESP32 Characteristic UUID
 const DEVICE_NAME = 'ESP32_GATE';
-
-const manager = new BleManager();
 
 const HomeScreen = () => {
     const [isScanning, setIsScanning] = useState(false);

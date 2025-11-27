@@ -1,50 +1,116 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 
-// Mock API Service
-// Since we don't have a real backend, we simulate responses.
+// Determine Base URL based on Platform
+// Android Emulator uses 10.0.2.2 to access localhost of the host machine
+// Web uses localhost
+// Physical Device uses PC's LAN IP
+const BASE_URL = Platform.OS === 'android'
+    ? 'http://192.168.0.8:3000'
+    : 'http://localhost:3000';
 
-const api = {
+const api = axios.create({
+    baseURL: BASE_URL,
+    timeout: 10000, // 10 seconds timeout
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+// Add a request interceptor to add the auth token if available
+// TODO: Integrate with AsyncStorage or SecureStore to retrieve token
+// api.interceptors.request.use(async (config) => {
+//     const token = await AsyncStorage.getItem('userToken');
+//     if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+// });
+
+const ApiService = {
+    // Auth
     login: async (email, password) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (email && password) {
-                    resolve({
-                        data: {
-                            token: 'mock-jwt-token',
-                            user: { email, name: 'Test User' },
-                        },
-                    });
-                } else {
-                    reject({ response: { data: { message: 'Invalid credentials' } } });
-                }
-            }, 1000);
-        });
+        try {
+            const response = await api.post('/auth', { email, password });
+            return response.data;
+        } catch (error) {
+            console.error('Login error:', error.response?.data || error.message);
+            throw error;
+        }
     },
 
-    register: async (name, cpf, email, password) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (name && cpf && email && password) {
-                    resolve({
-                        data: {
-                            message: 'User registered successfully',
-                        },
-                    });
-                } else {
-                    reject({ response: { data: { message: 'Missing fields' } } });
-                }
-            }, 1000);
-        });
+    // Users
+    createUser: async (userData) => {
+        try {
+            // userData should contain: name, email, birth_date, cpf, password
+            const response = await api.post('/users/create', userData);
+            return response.data;
+        } catch (error) {
+            console.error('Create User error:', error.response?.data || error.message);
+            throw error;
+        }
     },
 
-    checkin: async (userId) => {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                console.log(`Check-in recorded for user ${userId} at ${new Date().toISOString()}`);
-                resolve({ data: { success: true } });
-            }, 500);
-        });
+    getUserByCPF: async (cpf) => {
+        try {
+            const response = await api.post('/users/', { cpf });
+            return response.data;
+        } catch (error) {
+            console.error('Get User by CPF error:', error.response?.data || error.message);
+            throw error;
+        }
+    },
+
+    getAllUsers: async () => {
+        try {
+            const response = await api.get('/users');
+            return response.data;
+        } catch (error) {
+            console.error('Get All Users error:', error.response?.data || error.message);
+            throw error;
+        }
+    },
+
+    updateUser: async (id, data) => {
+        try {
+            const response = await api.patch(`/users/${id}`, data);
+            return response.data;
+        } catch (error) {
+            console.error('Update User error:', error.response?.data || error.message);
+            throw error;
+        }
+    },
+
+    deleteUser: async (id) => {
+        try {
+            const response = await api.delete(`/users/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error('Delete User error:', error.response?.data || error.message);
+            throw error;
+        }
+    },
+
+    // Company
+    createCompany: async (name) => {
+        try {
+            const response = await api.post('/company', { name });
+            return response.data;
+        } catch (error) {
+            console.error('Create Company error:', error.response?.data || error.message);
+            throw error;
+        }
+    },
+
+    registerInCompany: async (companyId, cpf) => {
+        try {
+            const response = await api.post(`/registerInCompany/${companyId}`, { cpf });
+            return response.data;
+        } catch (error) {
+            console.error('Register in Company error:', error.response?.data || error.message);
+            throw error;
+        }
     },
 };
 
-export default api;
+export default ApiService;

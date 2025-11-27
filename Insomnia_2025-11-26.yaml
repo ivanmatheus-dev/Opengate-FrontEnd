@@ -1,0 +1,246 @@
+type: collection.insomnia.rest/5.0
+name: openGate
+meta:
+  id: wrk_a3cd7fff6b36461b958629c154f05e6a
+  created: 1761429112230
+  modified: 1761429112230
+  description: ""
+collection:
+  - url: http://[::1]:3000/users/create
+    name: createUser
+    meta:
+      id: req_5a6c1963c1034c1fbb091f52e2d00641
+      created: 1761429116912
+      modified: 1764210100471
+      isPrivate: false
+      description: ""
+      sortKey: -1761429116913
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        "name": " a",
+        	"email": "vi@gmail.comm",
+        	"birth_date": "2003-01-03",
+        	"cpf": "",
+        	"password": ""
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/users/
+    name: returnUserByCPF
+    meta:
+      id: req_2ef36fc9617d4d15a8c0b39de0fdbcec
+      created: 1761446021689
+      modified: 1764210112018
+      isPrivate: false
+      description: ""
+      sortKey: -1761446021689
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"cpf": ""
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/users/0671bdad-2d1a-46f2-ae3e-b2ce26e288b1
+    name: deleteUser
+    meta:
+      id: req_0743eae1eb164fbb85e60eead93d5b1f
+      created: 1761503971693
+      modified: 1761702175052
+      isPrivate: false
+      description: ""
+      sortKey: -1761503971693
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/users/5fb10a0e-2ab8-414a-ab34-1b26eb5ee83a
+    name: updateUser
+    meta:
+      id: req_920e3ed275d743b1b47736bd10b62b0e
+      created: 1761505377096
+      modified: 1764030982526
+      isPrivate: false
+      description: ""
+      sortKey: -1761505377096
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "vivi",
+        	"email": "novo@gmail.com",
+        	"password": "EUuuuuuu0,"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/company
+    name: CreateCompnay
+    meta:
+      id: req_7d960c43a0064b248e829ccfeef740a2
+      created: 1761513908183
+      modified: 1764206010762
+      isPrivate: false
+      description: ""
+      sortKey: -1761513908183
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "teloso"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/auth
+    name: Login
+    meta:
+      id: req_83caee99ff874fffb046b928d0f89f83
+      created: 1761928505822
+      modified: 1764113910090
+      isPrivate: false
+      description: ""
+      sortKey: -1761928505822
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "novo@gmail.com",
+        	 "password": "EUuuuuuu0,"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/registerInCompany/6091fef0-6d5f-40be-ad50-64b1a4b4e613
+    name: RegisterUserInCompany
+    meta:
+      id: req_823e1c915b9b4028a664432f1466630c
+      created: 1764111195023
+      modified: 1764210128852
+      isPrivate: false
+      description: ""
+      sortKey: -1764111195023
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"cpf" :""
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://[::1]:3000/users
+    name: AllUsers
+    meta:
+      id: req_d97521d9e57942d7ab7a80888d11095c
+      created: 1764113053238
+      modified: 1764114124717
+      isPrivate: false
+      description: ""
+      sortKey: -1764113053238
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.3.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_abcdbebdbc5ef6b96253db5f584ceb2d92dd9307
+    created: 1761429112236
+    modified: 1761429112236
+environments:
+  name: Base Environment
+  meta:
+    id: env_abcdbebdbc5ef6b96253db5f584ceb2d92dd9307
+    created: 1761429112233
+    modified: 1764111417552
+    isPrivate: false
+  data:
+    baseUrl: http://[::1]:3000

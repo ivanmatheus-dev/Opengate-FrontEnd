@@ -18,6 +18,12 @@ const LoginScreen = ({ navigation }) => {
             return;
         }
 
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(email)) {
+            Alert.alert('Error', 'Please enter a valid email address');
+            return;
+        }
+
         setLoading(true);
         try {
             const response = await api.login(email, password);
