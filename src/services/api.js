@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 // Web uses localhost
 // Physical Device uses PC's LAN IP
 const BASE_URL = Platform.OS === 'android'
-    ? 'http://192.168.0.8:3000'
+    ? 'http://192.168.0.14:3000'
     : 'http://localhost:3000';
 
 const api = axios.create({

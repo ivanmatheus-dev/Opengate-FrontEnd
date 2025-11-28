@@ -6,17 +6,15 @@ import { colors } from '../theme/colors';
 import Icon from 'react-native-vector-icons/Feather';
 import { Buffer } from 'buffer';
 
-// BLE Constants - REPLACE THESE WITH REAL UUIDS
-const SERVICE_UUID = '00000000-0000-0000-0000-000000000000'; // TODO: Replace with ESP32 Service UUID
-const CHARACTERISTIC_UUID = '00000000-0000-0000-0000-000000000000'; // TODO: Replace with ESP32 Characteristic UUID
-const DEVICE_NAME = 'ESP32_GATE';
+const SERVICE_UUID = 'b7c1f8a2-2a3e-4c19-9a65-5df3a3dcd2f4';
+const CHARACTERISTIC_UUID = 'e4d56c91-8bb9-4bd8-9f41-3c1e4b9f72e8';
+const DEVICE_NAME = 'OpenGate-ESP32';
 
 const HomeScreen = () => {
     const [isScanning, setIsScanning] = useState(false);
     const [connectedDevice, setConnectedDevice] = useState(null);
     const [status, setStatus] = useState('Ready to Open');
 
-    // Pulse animation for the button
     const [pulseAnim] = useState(new Animated.Value(1));
 
     useEffect(() => {
@@ -119,7 +117,7 @@ const HomeScreen = () => {
 
     const openGate = async (device) => {
         try {
-            const message = 'OPEN';
+            const message = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb21wYW55SWQiOjU1fQ.l_cAO7LnE-q8eoJTh7nB_9u96Y9XtgqPMKlMZzffng0';
             const base64Message = Buffer.from(message).toString('base64');
 
             await device.writeCharacteristicWithResponseForService(
